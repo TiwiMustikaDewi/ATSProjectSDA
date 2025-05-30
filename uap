@@ -26,3 +26,25 @@ def open_second_page(from_back=False):
     canvas2.pack(fill="both", expand=True)
     canvas2.create_image(0, 0, anchor="nw", image=bg_photo_2)
     canvas2.image = bg_photo_2
+
+# Fungsi untuk membuka halaman anggota
+    def open_anggota():
+        second_window.destroy()
+        open_anggota_page()
+
+    anggota_button = tk.Button(second_window, text="ANGGOTA", font=("Helvetica", 18, "bold"),
+                               bg="#4A2C2A", fg="white", activebackground="#661F1A",
+                               command=open_anggota, cursor="hand2", borderwidth=0)
+    anggota_button.config(width=14, height=1)
+    canvas2.create_window(screen_width // 2, 350, window=anggota_button)
+
+# Fungsi untuk membuka halaman proyek
+    def open_project():
+        messagebox.showinfo("Project", "Tombol PROJECT diklik")
+    project_button = tk.Button(second_window, text="PROJECT", font=("Helvetica", 18, "bold"),
+                               bg="#4A2C2A", fg="white", activebackground="#661F1A",
+                               command=open_project, cursor="hand2", borderwidth=0)
+    project_button.config(width=14, height=1)
+    canvas2.create_window(screen_width // 2, 450, window=project_button)
+
+    second_window.mainloop()
