@@ -48,3 +48,24 @@ def open_second_page(from_back=False):
     canvas2.create_window(screen_width // 2, 450, window=project_button)
 
     second_window.mainloop()
+
+# Fungsi untuk membuka halaman anggota
+    def open_anggota_page():
+        anggota_window = tk.Tk()
+        anggota_window.title("Anggota - Weak Hero Class")
+        screen_width = 360
+        screen_height = 640
+        anggota_window.geometry(f"{screen_width}x{screen_height}")
+        anggota_window.resizable(False, False)
+    
+        current_dir = os.path.dirname(os.path.abspath(file))
+        anggota_image_path = os.path.join(current_dir, "ANGGOTA.jpg")
+    
+        anggota_image = Image.open(anggota_image_path)
+        anggota_image = anggota_image.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+        anggota_photo = ImageTk.PhotoImage(anggota_image)
+    
+        canvas3 = tk.Canvas(anggota_window, width=screen_width, height=screen_height)
+        canvas3.pack(fill="both", expand=True)
+        canvas3.create_image(0, 0, anchor="nw", image=anggota_photo)
+        canvas3.image = anggota_photo
