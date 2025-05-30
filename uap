@@ -69,3 +69,16 @@ def open_second_page(from_back=False):
         canvas3.pack(fill="both", expand=True)
         canvas3.create_image(0, 0, anchor="nw", image=anggota_photo)
         canvas3.image = anggota_photo
+
+# Fungsi untuk kembali ke halaman kedua
+    def go_back():
+        anggota_window.destroy()
+        open_second_page(from_back=True)
+
+    back_button = tk.Button(anggota_window, text="BACK", font=("Helvetica", 14, "bold"),
+                            bg="#4A2C2A", fg="white", activebackground="#661F1A",
+                            command=go_back, cursor="hand2", borderwidth=0)
+    back_button.config(width=10, height=1)
+    canvas3.create_window(screen_width // 2, 580, window=back_button)
+
+    anggota_window.mainloop()
