@@ -82,3 +82,30 @@ def open_second_page(from_back=False):
     canvas3.create_window(screen_width // 2, 580, window=back_button)
 
     anggota_window.mainloop()
+
+welcome_window = tk.Tk()
+welcome_window.title("Weak Hero Class")
+screen_width = 360
+screen_height = 640
+welcome_window.geometry(f"{screen_width}x{screen_height}")
+welcome_window.resizable(False, False)
+
+current_dir = os.path.dirname(os.path.abspath(_file_))
+image_path_1 = os.path.join(current_dir, "WHC DESAIN.jpg")
+
+bg_image_1 = Image.open(image_path_1)
+bg_image_1 = bg_image_1.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+bg_photo_1 = ImageTk.PhotoImage(bg_image_1)
+
+canvas1 = tk.Canvas(welcome_window, width=screen_width, height=screen_height)
+canvas1.pack(fill="both", expand=True)
+canvas1.create_image(0, 0, anchor="nw", image=bg_photo_1)
+
+start_button = tk.Button(welcome_window, text="START", font=("Helvetica", 18, "bold"),
+                         bg="#4A2C2A", fg="white", activebackground="#661F1A",
+                         command=open_second_page, cursor="hand2", borderwidth=0)
+
+canvas1.create_window(screen_width // 2, 540, window=start_button)
+canvas1.image = bg_photo_1
+
+welcome_window.mainloop()
