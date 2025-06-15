@@ -127,11 +127,21 @@ class JurusScoringApp(tk.Frame):
             self.aka_score += amount
             self.aka_score_label.config(text=str(self.aka_score))
 
-
     def disqualify(self, side):
         messagebox.showinfo("Diskualifikasi", f"Pemain {side.upper()} terdiskualifikasi")
 
-
     def retire(self, side):
         messagebox.showinfo("Kiken", f"Pemain {side.upper()} telah mengundurkan diri")
+
+    def start_ao_timer(self):
+        if not self.ao_name.get():
+            messagebox.showwarning("Peringatan", "Silakan isi nama untuk Ao terlebih dahulu")
+            return
+        if self.ao_Jurus.get() == "Pilih Jurus":
+            messagebox.showwarning("Peringatan", "Silakan pilih Jurus untuk Ao terlebih dahulu")
+            return
+        self.ao_started = True
+        self.aka_running = False
+        self.ao_running = True
+        self.ao_start_time = time.time() - self.ao_time
 
