@@ -26,3 +26,12 @@ def open_sosmed_page(parent=None):
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, anchor="nw", image=bg_photo)
     sosmed_window.bg_photo = bg_photo
+
+    def go_back():
+        sosmed_window.destroy()
+        open_second_page(parent=parent)
+
+    back_button = tk.Button(sosmed_window, text="> back", font=("Inter", 10, "bold"),
+                            bg="#35216B", fg="white", activebackground="#8176E0",
+                            command=go_back, cursor="hand2", borderwidth=0)
+    canvas.create_window(35, 25, window=back_button)
