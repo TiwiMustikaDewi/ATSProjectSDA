@@ -174,3 +174,43 @@ class JurusScoringApp(tk.Frame):
         state = "normal" if self.stopwatch_visible else "hidden"
         self.canvas.itemconfigure(self.ao_timer_label_id, state=state)
         self.canvas.itemconfigure(self.aka_timer_label_id, state=state)
+
+    def save_scores(self):
+        self.ao_running = False
+        self.aka_running = False
+
+        division = self.division_entry.get()
+        file_path = os.path.join(os.path.dirname(__file__), "scores.csv")
+        file_exists = os.path.isfile(file_path)
+
+        rows = []
+        if self.ao_started:
+            rows.append([
+                division,
+                "AO",
+                self.ao_name.get(),
+                self.ao_Jurus.get(),
+                self.ao_score,
+                int(self.ao_time)
+            ])
+        if self.aka_started:
+            rows.append([
+                division,
+                "AKA",
+                self.aka_name.get(),
+                self.aka_Jurus.get(),
+                self.aka_score,
+                int(self.aka_time)
+            ])
+
+        if not rows:
+            messagebox.showwarning("Peringatan", "Belum ada pertandingan yang dimulai.")
+            return
+
+        with open(file_path, "a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(["Division", "Side", "Name", "Jurus", "Score", "Time"])
+            for row in rows:
+                writer.writerow(row)
+        messagebox.showinfo("Simpan", "Data telah disimpan.")
