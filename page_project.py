@@ -29,4 +29,18 @@ class JurusScoringApp(tk.Frame):
 
         self.setup_ui()
         self.update_timers()
+    def setup_ui(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        bg_path = os.path.join(current_dir, "assets", "gradasi.jpg")
+        bg_image = Image.open(bg_path).resize((360, 640))
+        self.bg_photo = ImageTk.PhotoImage(bg_image)
+
+
+        self.canvas = tk.Canvas(self, width=360, height=640)
+        self.canvas.pack(fill="both", expand=True)
+        self.canvas.create_image(0, 0, anchor="nw", image=self.bg_photo)
+
+
+        self.canvas.create_rectangle(10, 150, 175, 450, fill="blue", outline="")
+        self.canvas.create_rectangle(185, 150, 350, 450, fill="red", outline="")
 
