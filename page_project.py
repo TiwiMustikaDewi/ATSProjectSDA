@@ -156,4 +156,16 @@ class JurusScoringApp(tk.Frame):
         self.ao_running = False
         self.aka_running = True
         self.aka_start_time = time.time() - self.aka_time
+        
+    def update_timers(self):
+        if self.ao_running:
+            self.ao_time = time.time() - self.ao_start_time
+            mins, secs = divmod(int(self.ao_time), 60)
+            self.ao_timer_label.config(text=f"{mins}:{secs:02}")
+        if self.aka_running:
+            self.aka_time = time.time() - self.aka_start_time
+            mins, secs = divmod(int(self.aka_time), 60)
+            self.aka_timer_label.config(text=f"{mins}:{secs:02}")
+
+        self.master.after(1000, self.update_timers)
 
