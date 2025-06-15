@@ -93,4 +93,11 @@ class JurusScoringApp(tk.Frame):
         self._create_button("-1", lambda: self.change_score("aka", -1), 232, 350, width=3)
         self._create_button("+1", lambda: self.change_score("aka", 1), 300, 350, width=3)
 
+        self._create_button("Shikkaku", lambda: self.disqualify("ao"), 55, 390, width=7, bg="midnightblue", fg="white")
+        self._create_button("Kiken", lambda: self.retire("ao"), 130, 390, width=7, bg="midnightblue", fg="white")
+        self._create_button("Shikkaku", lambda: self.disqualify("aka"), 228, 390, width=7, bg="darkred", fg="white")
+        self._create_button("Kiken", lambda: self.retire("aka"), 300, 390, width=7, bg="darkred", fg="white")
+
+        self.ao_start_btn = self._create_button("START", self.start_ao_timer, 90, 430, width=7, bg="limegreen")
+        self.aka_start_btn = self._create_button("START", self.start_aka_timer, 270, 430, width=7, bg="limegreen")
 
