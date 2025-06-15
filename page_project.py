@@ -47,3 +47,17 @@ class JurusScoringApp(tk.Frame):
         self.canvas.create_text(210, 120, text="Judges:", fill="white", font=("Inter", 10, "bold"), anchor="w")
         self.judges_entry = tk.Entry(self.master, width=10, font=("Inter", 8))
         self.canvas.create_window(300, 120, window=self.judges_entry)
+
+        self.canvas.create_text(35, 170, text="Ao:", fill="white", font=("Inter", 10, "bold"), anchor="w")
+       
+        self.ao_name = tk.Entry(self.master, width=12, font=("Inter", 8))
+        self.canvas.create_window(100, 170, window=self.ao_name)
+
+        self.canvas.create_text(20, 200, text="Jurus:", fill="white", font=("Inter", 10, "bold"), anchor="w")
+        self.ao_Jurus = ttk.Combobox(self.master, values=[
+            "Kanku Dai", "Kanku Sho", "Bassai Dai", "Jion",
+            "Empi", "Unsu", "Gojushiho Sho", "Gojushiho Dai",
+            "Chinte", "Meikyo"
+        ], width=9, state="readonly", font=("Inter", 8))
+        self.ao_Jurus.set("Pilih Jurus")
+        self.canvas.create_window(100, 200, window=self.ao_Jurus)
