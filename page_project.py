@@ -145,3 +145,15 @@ class JurusScoringApp(tk.Frame):
         self.ao_running = True
         self.ao_start_time = time.time() - self.ao_time
 
+    def start_aka_timer(self):
+        if not self.aka_name.get():
+            messagebox.showwarning("Peringatan", "Silakan isi nama untuk Aka terlebih dahulu")
+            return
+        if self.aka_Jurus.get() == "Pilih Jurus":
+            messagebox.showwarning("Peringatan", "Silakan pilih Jurus untuk Aka terlebih dahulu")
+            return
+        self.aka_started = True
+        self.ao_running = False
+        self.aka_running = True
+        self.aka_start_time = time.time() - self.aka_time
+
