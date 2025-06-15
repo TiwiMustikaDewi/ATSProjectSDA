@@ -1,111 +1,62 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from tkinter import messagebox
 import os
+from page_second import open_second_page
+from page_project import open_third_page
 
-# Fungsi untuk membuka halaman kedua
-def open_second_page(from_back=False):
-    if not from_back:
-        welcome_window.destroy() 
-
-    second_window = tk.Tk()
-    second_window.title("About - Weak Hero Class")
+def main():
+    root = tk.Tk()
+    root.title("Loading")
     screen_width = 360
     screen_height = 640
-    second_window.geometry(f"{screen_width}x{screen_height}")
-    second_window.resizable(False, False)
+    root.geometry(f"{screen_width}x{screen_height}")
+    root.resizable(False, False)
 
-    current_dir = os.path.dirname(os.path.abspath(_file_))
-    image_path_2 = os.path.join(current_dir, "WHC2.jpg")
+    # Tampilkan gambar loading
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    loading_path = os.path.join(current_dir, "assets", "LOADING.jpg")
+    loading_img = Image.open(loading_path).resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+    loading_photo = ImageTk.PhotoImage(loading_img)
 
-    bg_image_2 = Image.open(image_path_2)
-    bg_image_2 = bg_image_2.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
-    bg_photo_2 = ImageTk.PhotoImage(bg_image_2)
+    canvas_loading = tk.Canvas(root, width=screen_width, height=screen_height)
+    canvas_loading.pack(fill="both", expand=True)
+    canvas_loading.create_image(0, 0, anchor="nw", image=loading_photo)
+    canvas_loading.image = loading_photo  # Simpan referensi
 
-    canvas2 = tk.Canvas(second_window, width=screen_width, height=screen_height)
-    canvas2.pack(fill="both", expand=True)
-    canvas2.create_image(0, 0, anchor="nw", image=bg_photo_2)
-    canvas2.image = bg_photo_2
+    def show_welcome():
+        root.destroy()
+        show_welcome_window()
 
-# Fungsi untuk membuka halaman anggota
-    def open_anggota():
-        second_window.destroy()
-        open_anggota_page()
+    root.after(2000, show_welcome)  # 2 detik loading
+    root.mainloop()
 
-    anggota_button = tk.Button(second_window, text="ANGGOTA", font=("Helvetica", 18, "bold"),
-                               bg="#4A2C2A", fg="white", activebackground="#661F1A",
-                               command=open_anggota, cursor="hand2", borderwidth=0)
-    anggota_button.config(width=14, height=1)
-    canvas2.create_window(screen_width // 2, 350, window=anggota_button)
+def show_welcome_window():
+    welcome_window = tk.Tk()
+    welcome_window.title("DojoDash App")
+    screen_width = 360
+    screen_height = 640
+    welcome_window.geometry(f"{screen_width}x{screen_height}")
+    welcome_window.resizable(False, False)
 
-# Fungsi untuk membuka halaman proyek
-    def open_project():
-        messagebox.showinfo("Project", "Tombol PROJECT diklik")
-    project_button = tk.Button(second_window, text="PROJECT", font=("Helvetica", 18, "bold"),
-                               bg="#4A2C2A", fg="white", activebackground="#661F1A",
-                               command=open_project, cursor="hand2", borderwidth=0)
-    project_button.config(width=14, height=1)
-    canvas2.create_window(screen_width // 2, 450, window=project_button)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    image_path_1 = os.path.join(current_dir, "assets", "BERANDA.jpg")
+    bg_image_1 = Image.open(image_path_1).resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+    bg_photo_1 = ImageTk.PhotoImage(bg_image_1)
 
-    second_window.mainloop()
+    canvas1 = tk.Canvas(welcome_window, width=screen_width, height=screen_height)
+    canvas1.pack(fill="both", expand=True)
+    canvas1.create_image(0, 0, anchor="nw", image=bg_photo_1)
+    canvas1.image = bg_photo_1
 
-# Fungsi untuk membuka halaman anggota
-    def open_anggota_page():
-        anggota_window = tk.Tk()
-        anggota_window.title("Anggota - Weak Hero Class")
-        screen_width = 360
-        screen_height = 640
-        anggota_window.geometry(f"{screen_width}x{screen_height}")
-        anggota_window.resizable(False, False)
-    
-        current_dir = os.path.dirname(os.path.abspath(file))
-        anggota_image_path = os.path.join(current_dir, "ANGGOTA.jpg")
-    
-        anggota_image = Image.open(anggota_image_path)
-        anggota_image = anggota_image.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
-        anggota_photo = ImageTk.PhotoImage(anggota_image)
-    
-        canvas3 = tk.Canvas(anggota_window, width=screen_width, height=screen_height)
-        canvas3.pack(fill="both", expand=True)
-        canvas3.create_image(0, 0, anchor="nw", image=anggota_photo)
-        canvas3.image = anggota_photo
+    start_button = tk.Button(
+        welcome_window, text="START", font=("Inter", 18, "bold"),
+        bg="#001366", fg="white", activebackground="#00C1F1",
+        command=lambda: [welcome_window.withdraw(), open_second_page(parent=welcome_window)],
+        cursor="hand2", borderwidth=0
+    )
+    canvas1.create_window(screen_width // 2, 540, window=start_button)
 
-# Fungsi untuk kembali ke halaman kedua
-    def go_back():
-        anggota_window.destroy()
-        open_second_page(from_back=True)
+    welcome_window.mainloop()
 
-    back_button = tk.Button(anggota_window, text="BACK", font=("Helvetica", 14, "bold"),
-                            bg="#4A2C2A", fg="white", activebackground="#661F1A",
-                            command=go_back, cursor="hand2", borderwidth=0)
-    back_button.config(width=10, height=1)
-    canvas3.create_window(screen_width // 2, 580, window=back_button)
-
-    anggota_window.mainloop()
-
-welcome_window = tk.Tk()
-welcome_window.title("Weak Hero Class")
-screen_width = 360
-screen_height = 640
-welcome_window.geometry(f"{screen_width}x{screen_height}")
-welcome_window.resizable(False, False)
-
-current_dir = os.path.dirname(os.path.abspath(_file_))
-image_path_1 = os.path.join(current_dir, "WHC DESAIN.jpg")
-
-bg_image_1 = Image.open(image_path_1)
-bg_image_1 = bg_image_1.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
-bg_photo_1 = ImageTk.PhotoImage(bg_image_1)
-
-canvas1 = tk.Canvas(welcome_window, width=screen_width, height=screen_height)
-canvas1.pack(fill="both", expand=True)
-canvas1.create_image(0, 0, anchor="nw", image=bg_photo_1)
-
-start_button = tk.Button(welcome_window, text="START", font=("Helvetica", 18, "bold"),
-                         bg="#4A2C2A", fg="white", activebackground="#661F1A",
-                         command=open_second_page, cursor="hand2", borderwidth=0)
-
-canvas1.create_window(screen_width // 2, 540, window=start_button)
-canvas1.image = bg_photo_1
-
-welcome_window.mainloop()
+if __name__ == "__main__":
+    main()
