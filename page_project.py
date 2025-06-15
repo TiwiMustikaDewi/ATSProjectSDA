@@ -75,4 +75,11 @@ class JurusScoringApp(tk.Frame):
         ], width=9, state="readonly", font=("Inter", 8))
         self.aka_Jurus.set("Pilih Jurus")
         self.canvas.create_window(287, 200, window=self.aka_Jurus)
+        self.ao_score_label = tk.Label(self.master, text="0", font=("Inter", 36, "bold"), fg="white", bg="blue")
+        self.canvas.create_window(125, 250, window=self.ao_score_label)
+       
+        self.aka_score_label = tk.Label(self.master, text="0", font=("Inter", 36, "bold"), fg="white", bg="red")
+        self.canvas.create_window(300, 250, window=self.aka_score_label)
+
+
 
