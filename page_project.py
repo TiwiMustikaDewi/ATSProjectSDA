@@ -168,4 +168,9 @@ class JurusScoringApp(tk.Frame):
             self.aka_timer_label.config(text=f"{mins}:{secs:02}")
 
         self.master.after(1000, self.update_timers)
-
+        
+    def toggle_stopwatch(self):
+        self.stopwatch_visible = not self.stopwatch_visible
+        state = "normal" if self.stopwatch_visible else "hidden"
+        self.canvas.itemconfigure(self.ao_timer_label_id, state=state)
+        self.canvas.itemconfigure(self.aka_timer_label_id, state=state)
