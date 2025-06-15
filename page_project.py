@@ -88,5 +88,9 @@ class JurusScoringApp(tk.Frame):
         self.aka_timer_label = tk.Label(self.master, text="0:00", font=("Inter", 12, "bold"), fg="white", bg="darkred")
         self.canvas.create_window(265, 310, window=self.aka_timer_label)
 
+        self._create_button("-1", lambda: self.change_score("ao", -1), 60, 350, width=3)
+        self._create_button("+1", lambda: self.change_score("ao", 1), 120, 350, width=3)
+        self._create_button("-1", lambda: self.change_score("aka", -1), 232, 350, width=3)
+        self._create_button("+1", lambda: self.change_score("aka", 1), 300, 350, width=3)
 
 
