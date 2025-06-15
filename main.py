@@ -12,7 +12,6 @@ def main():
     root.geometry(f"{screen_width}x{screen_height}")
     root.resizable(False, False)
 
-    # Tampilkan gambar loading
     current_dir = os.path.dirname(os.path.abspath(__file__))
     loading_path = os.path.join(current_dir, "assets", "LOADING.jpg")
     loading_img = Image.open(loading_path).resize((screen_width, screen_height), Image.Resampling.LANCZOS)
@@ -21,13 +20,13 @@ def main():
     canvas_loading = tk.Canvas(root, width=screen_width, height=screen_height)
     canvas_loading.pack(fill="both", expand=True)
     canvas_loading.create_image(0, 0, anchor="nw", image=loading_photo)
-    canvas_loading.image = loading_photo  # Simpan referensi
+    canvas_loading.image = loading_photo 
 
     def show_welcome():
         root.destroy()
         show_welcome_window()
 
-    root.after(2000, show_welcome)  # 2 detik loading
+    root.after(2000, show_welcome) 
     root.mainloop()
 
 def show_welcome_window():
