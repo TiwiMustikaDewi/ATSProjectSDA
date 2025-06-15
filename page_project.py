@@ -259,9 +259,30 @@ def open_third_page(parent=None):
     if not parent:
         window.mainloop()
 
-
 if __name__ == "__main__":
     open_third_page()
 
-
 import csv
+
+def save_score(part, score, csv_file='scores.csv'):
+    scores = {}
+    try:
+        with open(csv_file, 'r', newline='') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if row:
+                    scores[row[0]] = row[1]
+    except FileNotFoundError:
+        pass
+
+
+    scores[part] = score
+
+
+    with open(csv_file, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow([part, score])
+
+active_part = 'aka'
+
+save_score(active_part, 90)
