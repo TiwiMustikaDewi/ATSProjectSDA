@@ -6,13 +6,11 @@ import csv
 import os
 import time
 
-
 class JurusScoringApp(tk.Frame):
     def __init__(self, master, parent=None):
         super().__init__(master)
         self.master = master
         self.parent = parent
-
 
         self.ao_score = 0
         self.aka_score = 0
@@ -26,21 +24,26 @@ class JurusScoringApp(tk.Frame):
         self.ao_started = False
         self.aka_started = False
 
-
         self.setup_ui()
         self.update_timers()
+        
     def setup_ui(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         bg_path = os.path.join(current_dir, "assets", "gradasi.jpg")
         bg_image = Image.open(bg_path).resize((360, 640))
         self.bg_photo = ImageTk.PhotoImage(bg_image)
 
-
         self.canvas = tk.Canvas(self, width=360, height=640)
         self.canvas.pack(fill="both", expand=True)
         self.canvas.create_image(0, 0, anchor="nw", image=self.bg_photo)
 
-
         self.canvas.create_rectangle(10, 150, 175, 450, fill="blue", outline="")
         self.canvas.create_rectangle(185, 150, 350, 450, fill="red", outline="")
 
+        self.canvas.create_text(20, 120, text="Division:", fill="white", font=("Inter", 10, "bold"), anchor="w")
+        self.division_entry = tk.Entry(self.master, width=15, font=("Inter", 8))
+        self.canvas.create_window(125, 120, window=self.division_entry)
+       
+        self.canvas.create_text(210, 120, text="Judges:", fill="white", font=("Inter", 10, "bold"), anchor="w")
+        self.judges_entry = tk.Entry(self.master, width=10, font=("Inter", 8))
+        self.canvas.create_window(300, 120, window=self.judges_entry)
