@@ -214,3 +214,29 @@ class JurusScoringApp(tk.Frame):
             for row in rows:
                 writer.writerow(row)
         messagebox.showinfo("Simpan", "Data telah disimpan.")
+
+    def reset_all(self):
+        self.ao_score = 0
+        self.aka_score = 0
+        self.ao_time = 0
+        self.aka_time = 0
+        self.ao_running = False
+        self.aka_running = False
+        self.ao_started = False
+        self.aka_started = False
+        self.ao_score_label.config(text="0")
+        self.aka_score_label.config(text="0")
+        self.ao_timer_label.config(text="0:00")
+        self.aka_timer_label.config(text="0:00")
+        self.ao_Jurus.set("Pilih Jurus")
+        self.aka_Jurus.set("Pilih Jurus")
+        self.ao_name.delete(0, tk.END)
+        self.aka_name.delete(0, tk.END)
+        self.division_entry.delete(0, tk.END)
+        self.judges_entry.delete(0, tk.END)
+
+    def go_back(self):
+        self.master.destroy()
+        if self.parent:
+            from page_second import open_second_page
+            open_second_page(parent=self.parent)
