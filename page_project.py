@@ -119,3 +119,19 @@ class JurusScoringApp(tk.Frame):
         self.canvas.create_window(x, y, window=button)
         return button
 
+    def change_score(self, side, amount):
+        if side == "ao":
+            self.ao_score += amount
+            self.ao_score_label.config(text=str(self.ao_score))
+        else:
+            self.aka_score += amount
+            self.aka_score_label.config(text=str(self.aka_score))
+
+
+    def disqualify(self, side):
+        messagebox.showinfo("Diskualifikasi", f"Pemain {side.upper()} terdiskualifikasi")
+
+
+    def retire(self, side):
+        messagebox.showinfo("Kiken", f"Pemain {side.upper()} telah mengundurkan diri")
+
