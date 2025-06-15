@@ -106,3 +106,9 @@ class JurusScoringApp(tk.Frame):
         self.reset_btn = self._create_button("RESET", self.reset_all, 255, 530, width=7, bg="limegreen")
         self.back_btn = self._create_button("CLOSE", self.go_back, 180, 550, width=10, bg="red", fg="white")
 
+        biru_img_path = os.path.join(current_dir, "assets", "BLUE.png")
+        merah_img_path = os.path.join(current_dir, "assets", "RED.png")
+        self.biru_photo = ImageTk.PhotoImage(Image.open(biru_img_path))
+        self.merah_photo = ImageTk.PhotoImage(Image.open(merah_img_path))
+        self.canvas.create_image(65, 250, image=self.biru_photo, anchor="center")
+        self.canvas.create_image(240, 250, image=self.merah_photo, anchor="center")
