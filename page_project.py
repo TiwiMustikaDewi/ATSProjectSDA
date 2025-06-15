@@ -112,3 +112,10 @@ class JurusScoringApp(tk.Frame):
         self.merah_photo = ImageTk.PhotoImage(Image.open(merah_img_path))
         self.canvas.create_image(65, 250, image=self.biru_photo, anchor="center")
         self.canvas.create_image(240, 250, image=self.merah_photo, anchor="center")
+
+        def _create_button(self, text, command, x, y, width=5, bg="white", fg="black"):
+        button = tk.Button(self.master, text=text, command=command, width=width,
+                         bg=bg, fg=fg, cursor="hand2", font=("Inter", 8))
+        self.canvas.create_window(x, y, window=button)
+        return button
+
