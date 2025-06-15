@@ -240,3 +240,28 @@ class JurusScoringApp(tk.Frame):
         if self.parent:
             from page_second import open_second_page
             open_second_page(parent=self.parent)
+
+def open_third_page(parent=None):
+    window = tk.Toplevel(parent) if parent else tk.Tk()
+    window.title("Project - Jurus Scoring")
+    app = JurusScoringApp(window, parent=parent)
+    app.pack(fill="both", expand=True)
+    window.geometry("360x640")
+    window.resizable(False, False)
+   
+    if hasattr(app, 'bg_photo'):
+        app.bg_photo = app.bg_photo
+    if hasattr(app, 'biru_photo'):
+        app.biru_photo = app.biru_photo
+    if hasattr(app, 'merah_photo'):
+        app.merah_photo = app.merah_photo
+   
+    if not parent:
+        window.mainloop()
+
+
+if __name__ == "__main__":
+    open_third_page()
+
+
+import csv
