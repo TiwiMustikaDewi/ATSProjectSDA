@@ -100,4 +100,9 @@ class JurusScoringApp(tk.Frame):
 
         self.ao_start_btn = self._create_button("START", self.start_ao_timer, 90, 430, width=7, bg="limegreen")
         self.aka_start_btn = self._create_button("START", self.start_aka_timer, 270, 430, width=7, bg="limegreen")
+        
+        self.toggle_btn = self._create_button("SHOW/HIDE\nSTOPWATCH", self.toggle_stopwatch, 180, 490, width=15, bg="limegreen")
+        self.done_btn = self._create_button("DONE", self.save_scores, 100, 530, width=7, bg="limegreen")
+        self.reset_btn = self._create_button("RESET", self.reset_all, 255, 530, width=7, bg="limegreen")
+        self.back_btn = self._create_button("CLOSE", self.go_back, 180, 550, width=10, bg="red", fg="white")
 
