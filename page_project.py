@@ -147,6 +147,7 @@ class JurusScoringApp(tk.Frame):
         self.ao_start_time = time.time() - self.ao_time
 
     def start_aka_timer(self):
+        self.last_started = "AKA"
         if not self.aka_name.get():
             messagebox.showwarning("Peringatan", "Silakan isi nama untuk Aka terlebih dahulu")
             return
@@ -266,7 +267,3 @@ def save_score(part, score, csv_file='scores.csv'):
     with open(csv_file, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([part, score])
-
-active_part = 'aka'
-
-save_score(active_part, 90)
